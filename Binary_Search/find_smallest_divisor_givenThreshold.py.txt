@@ -1,0 +1,21 @@
+from typing import List
+class Solution:
+    def smallestDivisor(self, nums: List[int], threshold: int) -> int:
+        low=1
+        ans=-1
+        high=max(nums)
+        if threshold == len(nums):
+            return high
+        while(low<=high):
+            mid=(low+high)//2
+            sum=0
+            for num in nums:
+                sum+=ceil(num/mid)
+            if sum<=threshold:
+                ans=mid
+                high=mid-1
+            else:
+                low=mid+1
+        return ans
+s=Solution()
+print(s.smallestDivisor([1,2,5,9], 6))
